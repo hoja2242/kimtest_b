@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.example.demo.vo.CustomerVo;
 import com.example.demo.vo.DeptVo;
 
 public class DBManager {
@@ -24,6 +25,12 @@ public class DBManager {
 	public static List<DeptVo> selectAllDept() {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<DeptVo> list = session.selectList("dept.selectAll");
+		session.close();
+		return list;
+	}
+	public static List<CustomerVo> selectAllCustomer() {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<CustomerVo> list = session.selectList("customer.selectAll");
 		session.close();
 		return list;
 	}
